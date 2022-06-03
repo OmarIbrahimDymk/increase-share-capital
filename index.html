@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Increase Share Capital</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+  </head>
+  <body>
+    <main id="app" class="container">
+      <div class="row">
+        <div class="col">
+          <h1>{{ title }}</h1>
+          <!-- Share Capital -->
+          <div class="input-field">
+            <input
+              v-model="shareCapital"
+              id="share_capital"
+              type="number"
+              class="validate"
+              @change="getFee(shareCapital, originalPayment)"
+            />
+            <label for="share_capital">Authorized Share Capital</label>
+          </div>
+          <!-- Original Payment -->
+          <div class="input-field">
+            <input
+              v-model="originalPayment"
+              id="original_payment"
+              type="number"
+              class="validate"
+              @change="getFee(shareCapital, originalPayment)"
+              :disabled="!removePayment"
+            />
+            <label for="original_payment">Original Payment</label>
+          </div>
+          <!-- Switch -->
+          <div class="switch">
+            <label>
+              Remove Original Payment
+              <input
+                v-model="removePayment"
+                @change="getFee(shareCapital, originalPayment)"
+                type="checkbox"
+              />
+              <span class="lever"></span>
+            </label>
+          </div>
+          <!-- Fee -->
+          <div class="input-field">
+            <input
+              v-model="fee"
+              disabled
+              id="fee"
+              type="number"
+              class="validate"
+            />
+            <label for="fee">Fee</label>
+          </div>
+          <!-- Calculate button -->
+          <div>
+            <a
+              class="waves-effect waves-light btn"
+              @click="getFee(shareCapital, originalPayment)"
+              >Calculate Fee</a
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="/library.js"></script>
+    <script src="/main.js"></script>
+  </body>
+</html>
